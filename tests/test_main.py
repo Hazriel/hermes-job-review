@@ -1,4 +1,4 @@
-import unittest, tempfile, sys, json
+import unittest, tempfile, sys, json, os
 from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -8,7 +8,7 @@ try:
     import main
 except ImportError:
     main=None
-SCRATCH='/home/hazriel/.hermes/cache/scratch'
+SCRATCH=os.environ.get('TMPDIR','/tmp')
 class PipelineTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory(dir=SCRATCH)

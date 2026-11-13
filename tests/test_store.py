@@ -1,4 +1,5 @@
 import importlib
+import os
 import sys
 import tempfile
 import unittest
@@ -44,7 +45,7 @@ def analysis(**overrides):
 
 class StoreTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(dir='/home/hazriel/.hermes/cache/scratch')
+        self.temp = tempfile.TemporaryDirectory(dir=os.environ.get('TMPDIR', '/tmp'))
         self.path = Path(self.temp.name) / 'jobs.sqlite3'
         module = storage()
         self.assertTrue(hasattr(module, 'Store'), 'Store is not implemented')
